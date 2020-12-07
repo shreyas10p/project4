@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Project-4{% endblock %}
+
+{% block tabs %}
+<div class="container tab-margin-less">
+    <ul class="nav nav-pills nav-justified">
+      <li class="active shift"><a href="#search" data-toggle="tab" id="search-button">Search</a></li>
+      <li class="shift"><a href="#analytics" data-toggle="tab" id="analytics-button">Analytics</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="search" class="tab-pane fade in active tab-margin">
+        <div class="row">
+          <div class="col-sm-9 col-md-9">
+            <input type="text" class="form-control" placeholder="search" id="search-field">
+          </div>
+          <div>
+            <button id="search-query" class="btn btn-primary">Search</button>
+          </div>
+        </div>
+        <div class="row tab-margin-less">
+          <div class="col-sm-3 col-md-3">
+            <div class="dropdown" >
+              <button class="btn dropdown-toggle" type="button" id="poi-button" data-toggle="dropdown">POIs
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu" id="poi-dropdown">
+                <li val="1"><a href="#">HTML</a></li>
+                <li val="2"><a href="#">CSS</a></li>
+                <li val="3"><a href="#">JavaScript</a></li>
+              </ul>
+            </div>
+          </div >
+          <div class="col-sm-3 col-md-3">
+            <div class="dropdown" >
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="country-button">Country
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu" id="country-dropdown">
+                <li><a href="#">India</a></li>
+                <li><a href="#">Italy</a></li>
+                <li><a href="#">United States</a></li>
+              </ul>
+            </div>
+          </div >
+          <div class="col-sm-3 col-md-3">
+            <div class="dropdown" >
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="language-button">Language
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu" id="language-dropdown">
+                <li><a href="#">English</a></li>
+                <li><a href="#">Hindi</a></li>
+                <li><a href="#">Italian</a></li>
+              </ul>
+            </div>
+          </div >
+          <div class="col-sm-3 col-md-3">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="topic-button">Topic
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu" id="topic-dropdown">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+              </ul>
+            </div>
+          </div >
+        </div>
+        <div class="row scrollable">
+          <div class="col-sm-6 col-md-6 verticalLine">
+          <div class="card">
+            <div class="card-body" id="tweet-card-body">
+            
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h3></h3>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+        
+        </div>
+
+      <div id="analytics" class="tab-pane fade in">
+        <div class="card">
+          <div class="card-title">Chart 1</div>
+            <div class="card-body">
+            <div class="ct-chart"></div>
+          </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}

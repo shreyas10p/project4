@@ -1,0 +1,23 @@
+.shift{
+    width: 45%;
+    text-align: center;
+}
+.tab-margin{
+    margin-top: 3%;
+}
+.tab-margin-less{
+    margin-top: 1%;
+}
+
+.scrollable{
+    height: 95vh;
+    overflow-y: scroll;
+}
+
+hr.solid {
+    border-top: 3px solid #bbb;
+}
+
+.verticalLine {
+    border-right: 3px dashed #bbb;
+  }
