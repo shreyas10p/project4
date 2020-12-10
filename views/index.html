@@ -3,18 +3,28 @@
 {% block title %}Project-4{% endblock %}
 
 {% block tabs %}
-<div class="container tab-margin-less">
-    <ul class="nav nav-pills nav-justified">
-      <li class="active shift"><a href="#search" data-toggle="tab" id="search-button">Search</a></li>
-      <li class="shift"><a href="#analytics" data-toggle="tab" id="analytics-button">Analytics</a></li>
+
+  <nav class="navbar navbar-default" style="background-color:skyblue">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">IR project4</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active "><a href="#search" data-toggle="tab" id="search-button">Search</a></li>
+      <li class=""><a href="#topic" data-toggle="tab" id="search-button">Topic</a></li>
+      <li class=""><a href="#analytics" data-toggle="tab" id="analytics-button">Analytics</a></li>
     </ul>
+  </div>
+  </nav>
+  <div class="container tab-margin-less">
     <div class="tab-content">
+
       <div id="search" class="tab-pane fade in active tab-margin">
         <div class="row">
-          <div class="col-sm-9 col-md-9">
+          <div class="col-sm-8 col-md-8">
             <input type="text" class="form-control" placeholder="search" id="search-field">
           </div>
-          <div>
+          <div class="col-sm-4">
             <button id="search-query" class="btn btn-primary">Search</button>
           </div>
         </div>
@@ -24,9 +34,21 @@
               <button class="btn dropdown-toggle" type="button" id="poi-button" data-toggle="dropdown">POIs
               <span class="caret"></span></button>
               <ul class="dropdown-menu" id="poi-dropdown">
-                <li val="1"><a href="#">HTML</a></li>
-                <li val="2"><a href="#">CSS</a></li>
-                <li val="3"><a href="#">JavaScript</a></li>
+                <li id="unselect-poi" val=""><a>POI(Unselect)</a></li>
+                <li val="CDCgov"><a>CDC</a></li>
+                <li val="HHSGov"><a>HHS</a></li>
+                <li val="NYGovCuomo"><a href="#">Andrew Cuomo</a></li>
+                <li val="USAGov"><a href="#">USA government</a></li>
+                <li val="drharshvardhan"><a href="#">Dr. HarshVardhan</a></li>
+                <li val="PMOIndia"><a href="#">Prime Minister Office India</a></li>
+                <li val="rashtrapatibhvn"><a href="#">President India</a></li>
+                <li val="MoHFW_INDIA"><a href="#">Health Ministry India</a></li>
+                <li val="GiuseppeConteIT"><a href="#">Giuseppe Conte</a></li>
+                <li val="MinisteroSalute"><a href="#">Health Minstry Italy</a></li>
+                <li val="immuni_app"><a href="#">Immunity App Italy</a></li>
+                <li val="Palazzo_Chigi"><a href="#">President of ministers Italy</a></li>
+                <li val="PMOIndia"><a href="#">Prime Minister Office India</a></li>
+                
               </ul>
             </div>
           </div >
@@ -35,9 +57,10 @@
               <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="country-button">Country
               <span class="caret"></span></button>
               <ul class="dropdown-menu" id="country-dropdown">
-                <li><a href="#">India</a></li>
-                <li><a href="#">Italy</a></li>
-                <li><a href="#">United States</a></li>
+                <li id="unselect-con" val=""><a>country(Unselect)</a></li>
+                <li val="India"><a href="#">India</a></li>
+                <li val="USA"><a href="#">United States</a></li>
+                <li val="Italy"><a href="#">Italy</a></li>
               </ul>
             </div>
           </div >
@@ -46,13 +69,14 @@
               <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="language-button">Language
               <span class="caret"></span></button>
               <ul class="dropdown-menu" id="language-dropdown">
-                <li><a href="#">English</a></li>
-                <li><a href="#">Hindi</a></li>
-                <li><a href="#">Italian</a></li>
+                <li id="unselect-lan" val=""><a>language(Unselect)</a></li>
+                <li val="en"><a href="#">English</a></li>
+                <li val="hi"><a href="#">Hindi</a></li>
+                <li val="it"><a href="#">Italian</a></li>
               </ul>
             </div>
           </div >
-          <div class="col-sm-3 col-md-3">
+          <!-- <div class="col-sm-3 col-md-3">
             <div class="dropdown">
               <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="topic-button">Topic
               <span class="caret"></span></button>
@@ -62,7 +86,7 @@
                 <li><a href="#">JavaScript</a></li>
               </ul>
             </div>
-          </div >
+          </div > -->
         </div>
         <div class="row scrollable">
           <div class="col-sm-6 col-md-6 verticalLine">
@@ -72,10 +96,10 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-6">
           <div class="card">
-            <div class="card-body">
-              <h3></h3>
+            <div class="card-body" id="news-articles">
+              
             </div>
           </div>
         </div>
@@ -83,15 +107,63 @@
         </div>
         
         </div>
+      <div id="topic" class="tab-pane fade in tab-margin">
+      
+      </div>
 
       <div id="analytics" class="tab-pane fade in">
-        <div class="card">
-          <div class="card-title">Chart 1</div>
-            <div class="card-body">
-            <div class="ct-chart"></div>
+          <div class="row tab-margin">
+          <div class="col-sm-8">
+            <div class="dropdown" >
+              <label> select country for Country based sentiment analysis:</label>
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="tot-country-button">Select Country
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu" id="tot-country-dropdown">
+                <li val="usa"><a href="#">USA</a></li>
+                <li val="india"><a href="#">India</a></li>
+                <li val="italy"><a href="#">Italy</a></li>
+              </ul>
+            </div>
+            <div class="chart-container" id="append-can-pie" style="height:40vh; width:40vh">
+            <canvas id="sentiment-us" height="300px" width="300px"></canvas>
           </div>
+        </div>
+        
+        <div class="col-sm-4">
+          <label>Total Tweets<p id="total_tweets"></p></label><br>
+          <label>Positive Tweets<p id="pos_tweets"></p></label><br>
+          <label>Negative Tweets<p id="neg_tweets"></p></label><br>
+          <label>Neutral Tweets<p id="neu_tweets"></p></label>
+        </div>
           </div>
+          <hr>
+        <div class="row tab-margin">
+        <div class="col-sm-12">
+            <div class="dropdown" >
+              <label> select country for POI based sentiment analysis:</label>
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="sen-country-button">Select Country
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu" id="sen-country-dropdown">
+                <li val="usa"><a href="#">USA</a></li>
+                <li val="india"><a href="#">India</a></li>
+                <li val="italy"><a href="#">Italy</a></li>
+              </ul>
+            </div>
+          <div class="chart-container" id="append-canvas" style="height:80%; width:80%">
+          <canvas id="sentiment-bar" ></canvas>
+        </div>
+      </div>
+        </div>
+        <div class="row tab-margin">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-6">
+          <div class="chart-container" style="height:45vh; width:45vh">
+          <canvas id="language-pie" height="300px" width="300px"></canvas>
+        </div>
+      </div>
+        </div>
       </div>
   </div>
 </div>
+
 {% endblock %}

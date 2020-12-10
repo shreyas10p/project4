@@ -21,3 +21,5 @@ hr.solid {
 .verticalLine {
     border-right: 3px dashed #bbb;
   }
+
+  .dropdown .btn {background: deepskyblue;}
