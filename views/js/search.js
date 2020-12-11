@@ -159,6 +159,16 @@ $('#tot-country-dropdown li').on('click', function(){
     httpGet(params,'get/country/sentiment',pieChart);
 });
 
+$('#topic-country-dropdown li').on('click', function(){
+    $("#topic-country-button").text($(this).text());
+    $("#topic-country-button").val($(this).attr('val'));
+    $('#line-bar').remove();
+    $('#topic-append-canvas').append('<canvas id="line-bar"><canvas>');
+    let params = {};
+    params['country'] = $(this).attr('val');
+    httpGet(params,'get/covid/tweets',lineChart);
+});
+
 $('#search-field').keypress(function(event){
     if(event.keyCode === 13){
         event.preventDefault();

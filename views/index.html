@@ -7,7 +7,7 @@
   <nav class="navbar navbar-default" style="background-color:deepskyblue">
     <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">IR project4</a>
+      <a class="navbar-brand" href="#" style="color:black">Twoogle</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active "><a href="#search" data-toggle="tab" id="search-button">Search</a></li>
@@ -34,7 +34,7 @@
               <button class="btn dropdown-toggle" type="button" id="poi-button" data-toggle="dropdown">POIs
               <span class="caret"></span></button>
               <ul class="dropdown-menu" id="poi-dropdown">
-                <li id="unselect-poi" val=""><a>POI(Unselect)</a></li>
+                <li id="unselect-poi" val=""><a>reset</a></li>
                 <li val="CDCgov"><a>CDC</a></li>
                 <li val="HHSGov"><a>HHS</a></li>
                 <li val="NYGovCuomo"><a href="#">Andrew Cuomo</a></li>
@@ -57,7 +57,7 @@
               <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="country-button">Country
               <span class="caret"></span></button>
               <ul class="dropdown-menu" id="country-dropdown">
-                <li id="unselect-con" val=""><a>country(Unselect)</a></li>
+                <li id="unselect-con" val=""><a> reset</a></li>
                 <li val="India"><a href="#">India</a></li>
                 <li val="USA"><a href="#">United States</a></li>
                 <li val="Italy"><a href="#">Italy</a></li>
@@ -69,24 +69,45 @@
               <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="language-button">Language
               <span class="caret"></span></button>
               <ul class="dropdown-menu" id="language-dropdown">
-                <li id="unselect-lan" val=""><a>language(Unselect)</a></li>
+                <li id="unselect-lan" val=""><a>reset</a></li>
                 <li val="en"><a href="#">English</a></li>
                 <li val="hi"><a href="#">Hindi</a></li>
                 <li val="it"><a href="#">Italian</a></li>
               </ul>
             </div>
           </div >
-          <!-- <div class="col-sm-3 col-md-3">
+          <div class="col-sm-3 col-md-3">
             <div class="dropdown">
-              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="topic-button">Topic
+              <button class="btn dropdown-toggle " type="button" data-toggle="dropdown" id="topic-button">Topic
               <span class="caret"></span></button>
-              <ul class="dropdown-menu" id="topic-dropdown">
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
+              <ul class="dropdown-menu scrollable-menu" id="topic-dropdown">
+                <li val="reset"><a href="#">reset</a></li>
+                <li val="Covid"><a href="#">Covid</a></li>
+                <li val="Virus"><a href="#">Virus</a></li>
+                <li val="vaccine"><a href="#">vaccine</a></li>
+                <li val="SARS-19"><a href="#">SARS-19</a></li>
+                <li val="WearAmask"><a href="#">mask</a></li>
+                <li val="WearAmask"><a href="#">WearAmask</a></li>
+                <li val="distancing"><a href="#">social distancing</a></li>
+                <li val="guidelines"><a href="#">cdc guidelines</a></li>
+                <li val="safe"><a href="#">stay safe</a></li>
+                <li val="Ventilator"><a href="#">Ventilator</a></li>
+                <li val="PPE"><a href="#">PPE</a></li>
+                <li val="Quarantine"><a href="#">Quarantine</a></li>
+                <li val="Antibody"><a href="#">Antibody</a></li>
+                <li val="Outbreak"><a href="#">Outbreak</a></li>
+                <li val="pandemic"><a href="#">pandemic</a></li>
+                <li val="N95"><a href="#">N95 respirator</a></li>
+                <li val="Immunity"><a href="#">Immunity</a></li>
+                <li val="pre"><a href="#">pre existing conditions</a></li>
+                <li val="Novel"><a href="#">Novel strain</a></li>
+                <li val="pathogen"><a href="#">pathogen</a></li>
+                <li val="community"><a href="#">community spread</a></li>
+                <li val="Asymptomatic"><a href="#">Asymptomatic</a></li>
+                <li val="spreader"><a href="#">Super-spreader</a></li>
               </ul>
             </div>
-          </div > -->
+          </div >
         </div>
         <div class="row scrollable">
           <div class="col-sm-6 col-md-6 verticalLine">
@@ -108,7 +129,23 @@
         
         </div>
       <div id="topic" class="tab-pane fade in tab-margin">
-      
+        <div class="row tab-margin">
+          <div class="col-sm-12">
+              <div class="dropdown" >
+                <label> Topic Analysis for covid and non-covid tweets</label>
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="topic-country-button">Select Country
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu" id="topic-country-dropdown">
+                  <li val="usa"><a href="#">USA</a></li>
+                  <li val="india"><a href="#">India</a></li>
+                  <li val="italy"><a href="#">Italy</a></li>
+                </ul>
+              </div>
+            <div class="chart-container" id="topic-append-canvas" style="height:80%; width:80%">
+            <canvas id="line-bar" ></canvas>
+          </div>
+        </div>
+          </div>
       </div>
 
       <div id="analytics" class="tab-pane fade in">
@@ -154,6 +191,14 @@
         </div>
       </div>
         </div>
+        <div class="row tab-margin">
+          <div class="col-sm-12">
+              <label>Number of tweets per language</label>
+            <div class="chart-container" id="lang-canvas" style="height:80%; width:80%">
+            <canvas id="language-bar" ></canvas>
+          </div>
+        </div>
+          </div>
         <div class="row tab-margin">
         <div class="col-sm-4"></div>
         <div class="col-sm-6">

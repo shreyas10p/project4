@@ -4,9 +4,13 @@ $( document ).ready(function() {
     $("#sen-country-button").val('usa');
     $("#tot-country-button").text('USA');
     $("#tot-country-button").val('usa');
+    $("#topic-country-button").text('USA');
+    $("#topic-country-button").val('usa');
   params['country'] = 'usa';
   httpGet(params,'get/poi/sentiment',getPOIGraphs);
   httpGet(params,'get/country/sentiment',pieChart);
+  httpGet(params,'get/covid/tweets',lineChart);
+  getBargraph();
 });
 
 function pieChart(data){
@@ -85,6 +89,104 @@ function getPOIGraphs(data){
     title: {
       display: true,
       text: 'Tweet sentiment of POI'
+    }
+  }
+});
+}
+
+function lineChart(data){
+  var canvas2 = document.getElementById("line-bar");
+  var ctx2 = canvas2.getContext('2d');
+  var dataa = {
+    labels: data.labels,
+    datasets: [{
+        label: "covid tweets",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "rgba(225,0,0,0.4)",
+        borderColor: "red", // The main line color
+        borderCapStyle: 'square',
+        borderDash: [], // try [5, 15] for instance
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "yellow",
+        pointHoverBorderColor: "brown",
+        pointHoverBorderWidth: 2,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        // notice the gap in the data and the spanGaps: true
+        data: data['covid_t'],
+        spanGaps: true,
+      }, {
+        label: "Non covid tweets",
+        fill: true,
+        lineTension: 0.1,
+        backgroundColor: "rgba(167,105,0,0.4)",
+        borderColor: "rgb(167, 105, 0)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "white",
+        pointBackgroundColor: "black",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "brown",
+        pointHoverBorderColor: "yellow",
+        pointHoverBorderWidth: 2,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        // notice the gap in the data and the spanGaps: false
+        data: data['non_cov'],
+        spanGaps: false,
+      }
+  
+    ]
+  };
+  
+  // Notice the scaleLabel at the same level as Ticks
+  var optionsa = {
+    scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  },
+                  scaleLabel: {
+                       display: true,
+                       labelString: 'No of tweets',
+                       fontSize: 20 
+                    }
+              }]            
+          }  
+  };
+  
+  // Chart declaration:
+  var myBarChart = new Chart(ctx2, {
+    type: 'line',
+    data: dataa,
+    options: optionsa
+  });
+
+}
+
+function getBargraph(){
+  new Chart(document.getElementById("language-bar"), {
+  type: 'bar',
+  data: {
+    labels:['English','Hindi','Italian'],
+    datasets: [{
+      backgroundColor: "blue",
+      data: [57162, 21212, 31684]
+  }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'No of tweets per language'
     }
   }
 });

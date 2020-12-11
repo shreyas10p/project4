@@ -9,4 +9,4 @@ services:
         ports:
             - "5000:5000"
         volumes: ['.:/var/www']
-        env_file: .docker/env/app.production.env
+        env_file: .docker/env/app.development.env
