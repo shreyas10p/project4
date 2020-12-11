@@ -27,7 +27,7 @@ def searchTweets():
         query += 'q=full_text%3A'+searchInput
     else:
         query += 'q=*%3A*'
-    print(query)
+    print("q",query)
     if(poi is not None):
         query += '&fq=user.screen_name%3A'+poi
     if(country is not None):
@@ -41,7 +41,6 @@ def searchTweets():
     response = requests.get(query)
     if(response.status_code == 200):
         resJson = response.json()
-        print(resJson['grouped'])
         if(resJson['responseHeader']['status'] == 0):
             data = []
             for doclist in resJson['grouped']['unique_field_text']['groups']:

@@ -29,3 +29,8 @@ hr.solid {
     max-height: 200px;
     overflow-x: hidden;
 }
+
+.justified{
+    position:absolute;
+    left:35%;
+}

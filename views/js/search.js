@@ -211,7 +211,7 @@ function appendNewsData(data){
     var news = "<h4>News Articles</h4>";
     for(var i=0;i<dataLen;i++){    
     news+= "<p><label><b>Title: </b>:"+newsentry[i].title+"</label>\
-        <label><b>Link: </b><a>"+newsentry[i].link+"</a></label>\
+        <label><b>Link: </b><a href='"+newsentry[i].link+"' target='_blank'>"+newsentry[i].link+"</a></label>\
         <label><b>published date: </b>"+newsentry[i].published+"</label></p>\
         <hr class='solid'>\
     "

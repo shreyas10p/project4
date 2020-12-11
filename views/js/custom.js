@@ -180,7 +180,8 @@ function getBargraph(){
     labels:['English','Hindi','Italian'],
     datasets: [{
       backgroundColor: "blue",
-      data: [57162, 21212, 31684]
+      data: [57162, 21212, 31684],
+      label:"Number of Tweets"
   }]
   },
   options: {
