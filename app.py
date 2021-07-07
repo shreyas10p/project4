@@ -3,7 +3,6 @@ import requests
 from utils import *
 import json
 from pygooglenews import GoogleNews
-import time
 
 app = Flask(__name__,template_folder='views',static_folder='views')
 config = load_config('project.yaml')
@@ -21,7 +20,7 @@ def searchTweets():
     language = request.args.get('lang')
     topic = request.args.get('topic')
     host = config['solr']
-    query = '{}'.format(host)+'solr/IRF20P4/edismax_sh?fl=*%2Cscore&'
+    query = '{}'.format(host)+'solr/gettingstarted/select?'
     if(searchInput is not None):
         query += 'q=full_text%3A'+searchInput
     else:
@@ -39,13 +38,12 @@ def searchTweets():
         resJson = response.json()
         if(resJson['responseHeader']['status'] == 0):
             data = []
-            for doclist in resJson['grouped']['unique_field_text']['groups']:
-                for doc in doclist['doclist']['docs']:
-                    data.append(doc)
-                    score = doc.get('user.followers_count',[0])[0]
-                    +doc.get('retweet_count',[0])[0]*2+doc.get('favorite_count',[0])[0]
-                doc['score'] = score
-            docsCount = resJson['grouped']['unique_field_text']['matches']
+            for doc in resJson['response']['docs']:
+                data.append(doc)
+                score = doc.get('user.followers_count',[0])[0]
+                +doc.get('retweet_count',[0])[0]*2+doc.get('favorite_count',[0])[0]
+            doc['score'] = score
+            docsCount = resJson['response'].get('numFound')
         else:
             return jsonify(status = 400,data="Error in response")
     else:
@@ -72,7 +70,7 @@ def searchNews():
 
 @app.route('/get/poi/sentiment',methods=['GET'])
 def getsentimentData():
-    time.sleep(1)
+
     country = request.args.get('country')
     pos = []
     neg = []
@@ -90,7 +88,7 @@ def getsentimentData():
 
 @app.route('/get/country/sentiment',methods=['GET'])
 def getcountryAnalysis():
-    time.sleep(1)
+
     country = request.args.get('country')
     with open('db.json') as f:
         data = json.loads(f.read())
@@ -100,7 +98,6 @@ def getcountryAnalysis():
 
 @app.route('/get/covid/tweets',methods=['GET'])
 def getCovidTweets():
-    time.sleep(1)
     country = request.args.get('country')
     with open('db.json') as f:
         data = json.loads(f.read())
@@ -116,5 +113,5 @@ def getCovidTweets():
 @app.route('/get/real/time',methods=['GET'])
 def getRealtme():
     country = request.args.get('country')
-    response = requests.get('https://api.covid19tracking.narrativa.com/api/country/'+country+'?date_from=2020-09-15&date_to=2020-09-21')
+    response = requests.get('https://api.covid19tracking.narrativa.com/api/country/'+country+'?date_from=2021-07-01&date_to=2021-07-06')
     return jsonify(response.json())
