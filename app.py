@@ -2,7 +2,7 @@ from flask import Flask,render_template,request,jsonify
 import requests
 from utils import *
 import json
-from pygooglenews import GoogleNews 
+from pygooglenews import GoogleNews
 import time
 
 app = Flask(__name__,template_folder='views',static_folder='views')
@@ -17,17 +17,15 @@ def searchTweets():
     searchInput = request.args.get('searchinput')
     poi = request.args.get('poi')
     country = request.args.get('country')
-    print(country)
+
     language = request.args.get('lang')
     topic = request.args.get('topic')
     host = config['solr']
-    print(host)
     query = '{}'.format(host)+'solr/IRF20P4/edismax_sh?fl=*%2Cscore&'
     if(searchInput is not None):
         query += 'q=full_text%3A'+searchInput
     else:
         query += 'q=*%3A*'
-    print("q",query)
     if(poi is not None):
         query += '&fq=user.screen_name%3A'+poi
     if(country is not None):
@@ -36,8 +34,6 @@ def searchTweets():
         query += '&fq=tweet_lang%3A'+language
     if(topic is not None):
         query += '&fq=hashtags%3A'+topic
-    print("q",query)
-    # data = requests.get('{}'.format(host)+'solr/IRF20P4/select?fq=country%3A'+country+'&fq=user.screen_name%3A'+poi+'&q=full_text%3A'+searchInput)
     response = requests.get(query)
     if(response.status_code == 200):
         resJson = response.json()
@@ -58,7 +54,7 @@ def searchTweets():
 
 @app.route('/search/news',methods=['GET'])
 def searchNews():
-    
+
     searchInput = request.args.get('searchinput')
     poi = request.args.get('poi')
     country = request.args.get('country')
@@ -68,25 +64,24 @@ def searchNews():
         googlenews = GoogleNews(lang = 'hi', country = 'IN')
     elif(country == 'Italy'):
         googlenews = GoogleNews(lang = 'it', country = 'IT')
-    
-    search = googlenews.search(str(searchInput)+str(poi), 
+
+    search = googlenews.search(str(searchInput)+str(poi),
     helper = True, when = None, from_ = None, to_ = None, proxies=None, scraping_bee=None)
-    
+
     return jsonify(status = 200,data=search)
 
 @app.route('/get/poi/sentiment',methods=['GET'])
 def getsentimentData():
     time.sleep(1)
-    country = request.args.get('country') 
+    country = request.args.get('country')
     pos = []
     neg = []
     neu = []
     with open('db.json') as f:
-        print(f)
         data = json.loads(f.read())
 
     data = data[country]
-    labels = data['poi'].keys()    
+    labels = data['poi'].keys()
     for label in labels:
         pos.append(data['poi'][label]['positive_tweets'])
         neg.append(data['poi'][label]['negative_tweets'])
@@ -122,5 +117,4 @@ def getCovidTweets():
 def getRealtme():
     country = request.args.get('country')
     response = requests.get('https://api.covid19tracking.narrativa.com/api/country/'+country+'?date_from=2020-09-15&date_to=2020-09-21')
-    print(response.json())
     return jsonify(response.json())
